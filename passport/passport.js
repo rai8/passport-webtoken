@@ -1,5 +1,7 @@
+const { model } = require('mongoose')
 const { ExtractJwt, Strategy } = require('passport-jwt')
 const User = require('../models/User')
+const passport = require('passport')
 
 module.exports.applyPassportStrategy = passport => {
   const options = {}
@@ -19,3 +21,5 @@ module.exports.applyPassportStrategy = passport => {
     })
   )
 }
+
+module.exports.authMiddleware = passport.authenticate('jwt', { session: false })
